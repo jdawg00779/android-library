@@ -1,0 +1,84 @@
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "24.0.0"
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 25
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs "$rootProject.projectDir/libs"
+    }
+}
+
+// custom tasks for creating source/javadoc jars
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    destinationDir = file("../javadoc/")
+//    failOnError false
+//}
+//
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+
+
+
+//Creating sources with comments
+//task androidSourcesJar(type: Jar) {
+//    classifier = 'sources'
+//    from android.sourceSets.main.java.srcDirs
+//}
+
+//Put the androidSources and javadoc to the artifacts
+//artifacts {
+//    archives androidSourcesJar
+//    archives javadocJar
+//}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: MAVEN_LOCAL_PATH_HT)
+            pom.groupId = GROUP
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = VERSION_NAME
+        }
+    }
+}
+task install(dependsOn: uploadArchives)
+
+/*
+
+//            pom.whenConfigured { pom ->
+//                println("Current Dependencies ${pom.dependencies}")
+//                pom.dependencies.each { dep ->
+//                    if (dep.getVersion() == "unspecified") {
+//                        dep.setGroupId(GROUP)
+//                        dep.setVersion(VERSION_NAME)
+//                        println("Updated ${dep}")
+//                    }
+//                }
+//            }
+ */
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'br.com.handtalk:unity:0.0.1@aar'
+}

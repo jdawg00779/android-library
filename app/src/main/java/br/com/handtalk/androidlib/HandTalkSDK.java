@@ -113,7 +113,6 @@ public class HandTalkSDK {
             intent.putExtra("HT_WindowType", windowtype);
             context.startActivity(intent);
 
-            Log.i(TAG,"selected animation: "+animation);
 //            ((Activity) context).overridePendingTransition(R.anim.slide_from_left, R.anim.slide_from_right);
 //            if (context instanceof Activity) {
 //                if (animation == HTAnimationType.HUGO_ANIME_SLIDE_FROM_LEFT) {
@@ -142,45 +141,6 @@ public class HandTalkSDK {
         return R.drawable.handtalk_tutorial;
     }
 
-
-//    public void stopService(){
-//        try {
-//            context.stopService(new Intent(context, ServiceTranslateHead.class));
-//            Log.i(TAG, "stopService()");
-//        }catch (Exception e){
-//            Log.e(TAG, "ERROR: stopService() - "+e.getMessage());
-//
-//        }
-//    }
-
-
-//    public void startService(Context context){
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (!Settings.canDrawOverlays(context)) {
-//                Log.e(TAG,"This permission check for SYSTEM_ALERT_WINDOW need to be implemented.");
-//            }else{
-//                    Intent ii = new Intent(context, ServiceTranslateHead.class);
-//                    ii.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    context.startService(ii);
-//                    Log.i(TAG, "startAsService()");
-//            }
-//        }else {
-//            Log.e(TAG, "This function only works above Android "+Build.VERSION.SDK_INT+" SDK");
-//        }
-//    }
-
-
-
-//    private boolean isMyServiceRunning(Class<?> serviceClass) {
-//        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-//        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-//            if (serviceClass.getName().equals(service.service.getClassName())) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
     private void turnAllElementsSelectable(){
         //make an array list to hold the info
         ArrayList<Integer> ids = new ArrayList<>();
@@ -192,20 +152,14 @@ public class HandTalkSDK {
     }
 
 
-
     private void findAllViews(ViewGroup viewGroup,ArrayList<Integer> ids) {
         for (int i = 0, n = viewGroup.getChildCount(); i < n; i++) {
             View child = viewGroup.getChildAt(i);
             if (child instanceof ViewGroup) {
                 findAllViews((ViewGroup) child, ids);
-//            } else if (child instanceof Button) {
             } else {
                 if (child instanceof TextView) {
                     makeViewIdElementToSelectableMode((TextView) child);
-
-                }else {
-                    Log.i(TAG,"It's a not TextView, is a "+child.getClass().getName());
-                    // do what you want with textView
                 }
             }
         }

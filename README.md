@@ -2,14 +2,14 @@
 
 ## What is this library?
 
-It's a android mobile library **to translate any Portuguese text content to Brazilian Sign Language**, called Libras, used by deaf community in Brazil.
-You can send a String and it will translated by our virtual interpreter Hugo.
+It's a android mobile library **to translate any text content from Portuguese to Brazilian Sign Language** ( Libras ), used by deaf community in Brazil.
+You can send a String and it will be translated by our virtual interpreter Hugo.
 
 ## Top Features
 
-* When started the object HandTalkSDK, it will automatically enable all text element to touch;
-* It' possible to set the animations' enter for the HugoActivity;
-* From there the magic happens;
+* When the HandTalkSDK object started, it will automatically enable all text element to be touchable;
+* It's possible to config a kind of animations you would like see on HugoActivity entering;
+* From this point, the magic will be happen;
 
 ## How to use
 

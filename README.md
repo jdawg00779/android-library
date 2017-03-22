@@ -31,11 +31,11 @@ You can send a String and it will be translated by our virtual interpreter Hugo.
 
 ## How it works for final Users:
 
-Always User want to translate anything, he will make a long press on any text on screen, and a Menu Context will show a Libras icon. Then user can press the button and this content will translated.
+Always User want to translate anything, he will make a long press on any text on screen, and a Menu Context will show a **Libras icon**. Then user can press the button and this content will translated.
 
 **See example Gif bellow:**
 
-<center><img src="http://line25.com/wp-content/uploads/2014/animated/4.gif"></center>
+<center><img align='center' src="http://line25.com/wp-content/uploads/2014/animated/4.gif"></center>
 
 
 ## About Hand Talk Company

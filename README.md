@@ -28,7 +28,29 @@ You can send a String and it will translated by our virtual interpreter Hugo.
     HandTalkSDK.getInstance(context).showUXTutorial();
 ```
 
-## Download Demo project at Google Play Store
+
+## How it works for final Users:
+
+Always User want to translate anything, he will make a long press on any text on screen, and a Menu Context will show a Libras icon. Then user can press the button and this content will translated.
+
+**See example Gif bellow:**
+
+<center><img src="http://line25.com/wp-content/uploads/2014/animated/4.gif"></center>
 
 
-## More examples and documentation
+## About Hand Talk Company
+
+
+Hand Talk it’s a **startup** with a very clear mission: break down barriers between deaf and hearing people once and for all.
+For the startup, this is not an easy task - but **sure it's possible**!
+
+Nowadays, they have two main solutions: The Hand Talk Mobile App - a pocket translator, that translates audio and written content into Sign Language, with the help of their friendly avatar, **Hugo** - a 3D sign language interpreter, that will make you fall in love with the app.
+
+Another interesting solutions is the **website translator**, which aims to make internet accessible for deaf. We may have no idea, but most of deaf people can’t write or read in their country native idioms, ‘cause their first language is Sign Language. It’s almost as internet is offline for more than 300 million people. With the website translator, the sites can have an app attached to their content and once the app is activated, all written content can be translated into sign language by Hugo.
+Right now, the solutions are only available for brazilian portuguese to Libras, but the plan is to make it global as soon as possible.
+Our next step it’s to teach Hugo English and American Sign Language!
+
+**Know more about us: Watch our <a href='https://www.youtube.com/watch?v=GtCh8cw5P4Y' target='_blank'>Institutional Video</a>**
+
+
+<!-- ## More examples and documentation -->

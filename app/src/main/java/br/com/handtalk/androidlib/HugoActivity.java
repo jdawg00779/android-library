@@ -33,24 +33,11 @@ public class HugoActivity extends CallbackInterface implements CallbackInterface
 
         mOUL = this;
         handler = new Handler();
-        Log.i(TAG,"mOUL on onCreated, after setted: "+mOUL);
 
-//        stopService();
         setupUnity();
         setConfigPopUp();
         setConfigByBundleExtras();
     }
-
-//    public void stopService(){
-//        htsdk = new HandTalkSDK(this);
-//        htsdk.stopService();
-//        Log.i(TAG,"HandTalkSDK stopService();");
-//    }
-
-//    @Override
-//    public void onBackPressed() {
-//        moveTaskToBack(true);
-//    }
 
     private void dismissActivity(){
         onBackPressed();
@@ -141,7 +128,6 @@ public class HugoActivity extends CallbackInterface implements CallbackInterface
     @Override
     protected void onStop() {
         super.onStop();
-//        htsdk.startService(this);
         mUnityPlayer.pause();
         Log.i(TAG, "onStop()");
     }

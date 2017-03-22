@@ -45,13 +45,14 @@ Para uma startup, isso não é uma tarefa fácil - mas,  **claro que é possíve
 Atualmente, temos 02 principais soluções:
 
 - O Aplicativo Hand Talk para smartphones - um tradutor de bolso, que traduz conteúdos escritos e falados para Língua de Sinais, com a ajuda do nosso amigo, **o Hugo** - um avatar 3D, que fará você se apaixonar pelo app.
-- A outra solução é um **tradutor para sites**, que visa tornar a internet acessível para os surdos.<br>Podemos não ter ideia, mas a maioria dos surdos não pode escrever ou ler na língua nativa do seu país, porque sua primeira língua (materna) é a Língua de Sinais. É como se a internet estivess offline para mais de 300 milhões de pessoas.
+- A outra solução é um **tradutor para sites**, que visa tornar a internet acessível para os surdos.
+Podemos não ter ideia, mas a maioria dos surdos não pode escrever ou ler na língua nativa do seu país, porque sua primeira língua (materna) é a Língua de Sinais. É como se a internet estivess offline para mais de 300 milhões de pessoas.
 Com o tradutor do site, esses conteúdos podem ter uma aplicação anexada e uma vez que a ferramenta seja ativada, todo o conteúdo escrito pode ser traduzido para a língua gestual pelo Hugo.
 No momento, as soluções estão disponíveis apenas para tradução do Português (BR) para Libras, mas o plano é torná-lo global o mais rápido possível.
 Nosso próximo passo é ensinar ao Hugo a Língua Americana de Sinais (ASL)
 
 <br><br>
-###Saiba mais sobre nós: assista o nosso <a href='https://www.youtube.com/watch?v=GtCh8cw5P4Y' target='_blank'>vídeo institutional.</a>**
+###Saiba mais sobre nós: assista o nosso <a href='https://www.youtube.com/watch?v=GtCh8cw5P4Y' target='_blank'>vídeo institutional.</a>
 <br><br>
 
 <!-- ## More examples and documentation -->

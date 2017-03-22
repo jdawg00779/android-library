@@ -1,13 +1,15 @@
+### IntelliJ ###
 *.iml
-.gradle
+.idea/
+
+### Gradle ###
+# Exclude Folder List #
+.gradle/
+build/
+gradle.properties
+
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
 .DS_Store
-/build
-/captures
-.externalNativeBuild
 app/libs/
 handtalkunityclean/build
 handtalkunityclean/src/main/res/drawable-xhdpi/
-handtalkunityclean/build/intermediates/incremental/packageDebugAndroidTest/

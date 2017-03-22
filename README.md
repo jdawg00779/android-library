@@ -41,7 +41,7 @@ Always User want to translate anything, he will make a long press on any text on
 ## About Hand Talk Company
 
 
-Hand Talk it’s a **startup** with a very clear mission: break down barriers between deaf and hearing people once and for all.
+<a href='http://handtalk.me/' target='_blank'>Hand Talk</a> it’s a **startup** with a very clear mission: break down barriers between deaf and hearing people once and for all.
 For the startup, this is not an easy task - but **sure it's possible**!
 
 Nowadays, they have two main solutions: The Hand Talk Mobile App - a pocket translator, that translates audio and written content into Sign Language, with the help of their friendly avatar, **Hugo** - a 3D sign language interpreter, that will make you fall in love with the app.

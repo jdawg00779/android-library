@@ -50,6 +50,6 @@ Com o tradutor do site, esses conteúdos podem ter uma aplicação anexada e uma
 No momento, as soluções estão disponíveis apenas para tradução do Português (BR) para Libras, mas o plano é torná-lo global o mais rápido possível.
 Nosso próximo passo é ensinar ao Hugo a Língua Americana de Sinais (ASL)
 
-###Saiba mais sobre nós: assista o nosso <a href='https://www.youtube.com/watch?v=GtCh8cw5P4Y' target='_blank'>vídeo institutional.</a>
+## Saiba mais sobre nós: assista o nosso <a href='https://www.youtube.com/watch?v=GtCh8cw5P4Y' target='_blank'>vídeo institutional.</a>
 
 <!-- ## More examples and documentation -->

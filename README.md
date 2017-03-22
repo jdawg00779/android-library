@@ -1,56 +1,56 @@
 # Hand Talk Android SDK
 
-## What is this library?
+## O que é?
 
-It's a android mobile library **to translate any text content from Portuguese to Brazilian Sign Language** ( Libras ), used by deaf community in Brazil.
-You can send a String and it will be translated by our virtual interpreter Hugo.
+Uma biblioteca para android **para tradução automática de qualquer conteúdo de texto do Português para a Língua Brasileira de Sinais** ( Libras ), usada pela comunidade surda no Brazil.
+Você pode enviar uma String como parâmetro e uma tradução será realizada pelo nosso interprete virtual: o **Hugo**.
 
-## Top Features
+* Quando o objeto **HandTalkSDK** é iniciado, automaticamente habilita o 'touch' de qualquer elemento de texto (TextView - classes e subclasses) da Activity;
+* É possível configurar o tipo de animação que voccê que você desejar para a entrada da Activity do Hugo;
+* À partir daqui, a mágica irá acontecer;
 
-* When the HandTalkSDK object started, it will automatically enable all text element to be touchable;
-* It's possible to config a kind of animations you would like see on HugoActivity entering;
-* From this point, the magic will be happen;
+## Como usar?
 
-## How to use
-
-1) Add gradle dependency:
+1) adicione a dependência no gradle:
 ```
     compile 'br.com.handtalk:android-sdk:0.0.1'
 ```
 
-2) To start using the library you just need to call HandTalkSDK Instance:
+2) Iniciar a instância do objeto HandTalkSDK:
 ```
     HandTalkSDK.getInstance(context);
 ```
 
-3) If you want do show the Default Tutorial Activity, you can call it:
+3) Se você quiser mostrar a Activity padrão de tutorial ao usuário, basta chamar:
 ```
     HandTalkSDK.getInstance(context).showUXTutorial();
 ```
 
 
-## How it works for final Users:
+## Como funciona para o usuário final:
 
-Always User want to translate anything, he will make a long press on any text on screen, and a Menu Context will show a **Libras icon**. Then user can press the button and this content will translated.
+Sempre que o usuário quiser traduzir algo, basta ele selecionar o texto do elemento, e aparecerá no contexto do menu um **ícone de tradução em Libras**. Então o usuário pode tocar nele e realizar a tradução do conteúdo.
 
-**See example Gif bellow:**
+**Veja o GIF de exemplo abaixo:**
 
 <center><img align='center' src="http://line25.com/wp-content/uploads/2014/animated/4.gif"></center>
 
 
-## About Hand Talk Company
+## Sobre a Hand Talk
 
 
-<a href='http://handtalk.me/' target='_blank'>Hand Talk</a> it’s a **startup** with a very clear mission: break down barriers between deaf and hearing people once and for all.
-For the startup, this is not an easy task - but **sure it's possible**!
+<a href='http://handtalk.me/' target='_blank'>Hand Talk</a> é uma **startup** com uma missão muito clara: derrubar as barreiras entre surdos e ouvintes.
+Para uma startup, isso não é uma tarefa fácil - mas **claro que é possível**!
 
-Nowadays, they have two main solutions: The Hand Talk Mobile App - a pocket translator, that translates audio and written content into Sign Language, with the help of their friendly avatar, **Hugo** - a 3D sign language interpreter, that will make you fall in love with the app.
+Atualmente, temos 02 principais soluções:
 
-Another interesting solutions is the **website translator**, which aims to make internet accessible for deaf. We may have no idea, but most of deaf people can’t write or read in their country native idioms, ‘cause their first language is Sign Language. It’s almost as internet is offline for more than 300 million people. With the website translator, the sites can have an app attached to their content and once the app is activated, all written content can be translated into sign language by Hugo.
-Right now, the solutions are only available for brazilian portuguese to Libras, but the plan is to make it global as soon as possible.
-Our next step it’s to teach Hugo English and American Sign Language!
+- O Aplicativo Hand Talk para smartphones - um tradutor de bolso, que traduz conteúdos escritor e falados para Língua de Sinais, com a ajuda do nosso amigo, **Hugo** - um avatar 3D, que fará você se apaixonar com o app.
+- A outra solução é um **tradutor para sites**, que visa tornar a internet acessível para os surdos. Podemos não ter ideia, mas a maioria dos surdos não pode escrever ou ler na língua nativa do seu país, porque sua primeira língua (materna) é a Língua de Sinais. É como se a internet estivess offline para mais de 300 milhões de pessoas.
+Com o tradutor do site, esses conteúdos podem ter uma aplicação anexada e uma vez que a ferramenta seja ativada, todo o conteúdo escrito pode ser traduzido para a língua gestual pelo Hugo.
+No momento, as soluções estão disponíveis apenas para tradução do Português (BR) para Libras, mas o plano é torná-lo global o mais rápido possível.
+Nosso próximo passo é ensinar ao Hugo a Língua Americana de Sinais (ASL)
 
-**Know more about us: Watch our <a href='https://www.youtube.com/watch?v=GtCh8cw5P4Y' target='_blank'>Institutional Video</a>**
+** Saiba mais sobre nós: assista o nosso <a href='https://www.youtube.com/watch?v=GtCh8cw5P4Y' target='_blank'>vídeo institutional.</a>**
 
 
 <!-- ## More examples and documentation -->

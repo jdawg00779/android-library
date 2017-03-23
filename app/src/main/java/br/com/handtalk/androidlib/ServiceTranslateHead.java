@@ -53,7 +53,7 @@ public class ServiceTranslateHead extends Service {
     public void startIcon(){
 
         chatImage = new ImageView(this);
-        chatImage.setImageResource(R.drawable.ic_icon_libras);
+        chatImage.setImageResource(R.drawable.ic_sign_language);
 
         chatImage.setOnTouchListener(new View.OnTouchListener() {
 

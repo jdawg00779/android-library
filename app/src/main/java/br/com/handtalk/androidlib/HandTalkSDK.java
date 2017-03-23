@@ -134,7 +134,7 @@ public class HandTalkSDK {
     }
 
     public int getIconhandTalkResouces(){
-        return R.drawable.ic_icon_libras;
+        return R.drawable.ic_sign_language;
     }
 
     public int getGifTutorialAnimated(){

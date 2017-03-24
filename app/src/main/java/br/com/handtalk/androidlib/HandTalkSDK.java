@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static br.com.handtalk.androidlib.Constants.Configurations.TAG;
 
@@ -45,6 +46,7 @@ public class HandTalkSDK {
 
     @SuppressLint("StaticFieldLeak")
     private static HandTalkSDK mInstance = null;
+    private static String currentClassName;
 
     private Context context;
     private String texttotranslate;
@@ -55,8 +57,11 @@ public class HandTalkSDK {
     private HandTalkSDK(){}
 
     public static synchronized HandTalkSDK getInstance(Context ctx){
-        if(null == mInstance){
+
+
+        if(null == mInstance || !currentClassName.equals(ctx.getClass().getName())){
             mInstance = new HandTalkSDK(ctx);
+            currentClassName = ctx.getClass().getName();
         }
         return mInstance;
     }

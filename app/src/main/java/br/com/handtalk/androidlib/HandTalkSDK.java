@@ -9,11 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import static br.com.handtalk.androidlib.Constants.Configurations.TAG;
 
@@ -62,6 +60,10 @@ public class HandTalkSDK {
         if(null == mInstance || !currentClassName.equals(ctx.getClass().getName())){
             mInstance = new HandTalkSDK(ctx);
             currentClassName = ctx.getClass().getName();
+            Log.i(TAG,"###### Different ActivityClass: "+ctx.getClass().getName());
+
+        }else{
+            Log.i(TAG,"###### Same ActivityClass: "+ctx.getClass().getName());
         }
         return mInstance;
     }
@@ -159,11 +161,14 @@ public class HandTalkSDK {
 
     private void findAllViews(ViewGroup viewGroup,ArrayList<Integer> ids) {
         for (int i = 0, n = viewGroup.getChildCount(); i < n; i++) {
+
             View child = viewGroup.getChildAt(i);
+
             if (child instanceof ViewGroup) {
                 findAllViews((ViewGroup) child, ids);
             } else {
                 if (child instanceof TextView) {
+                    Log.i(TAG,"makeViewIdElementToSelectableMode");
                     makeViewIdElementToSelectableMode((TextView) child);
                 }
             }

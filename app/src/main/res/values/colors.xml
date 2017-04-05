@@ -6,4 +6,5 @@
     <color name="colorBgTutorial">#000000</color>
     <color name="HTSdkColorBgLoader">#dddddd</color>
     <color name="HTSdkLogoTint">#bcbcbc</color>
+    <color name="HTSdkLogoConfirmDialogTint">#FFFFFF</color>
 </resources>

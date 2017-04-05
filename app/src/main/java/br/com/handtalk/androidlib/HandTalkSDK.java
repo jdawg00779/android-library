@@ -2,13 +2,23 @@ package br.com.handtalk.androidlib;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
+import android.support.design.internal.NavigationMenuItemView;
+import android.support.design.internal.NavigationMenuView;
+import android.support.design.widget.NavigationView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -51,6 +61,55 @@ public class HandTalkSDK {
     private int windowtype = HTWindowType.HUGO_WINDOW_FLOAT_CENTERED;
     private boolean touchableToExit = false;
     private int animation = HTAnimationType.HUGO_ANIME_SLIDE_FROM_RIGHT;
+    private String _lastTitleMenuItemSelected = null;
+
+    private View.OnCreateContextMenuListener CML = new View.OnCreateContextMenuListener() {
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v,
+                                        ContextMenu.ContextMenuInfo menuInfo) {
+
+            MenuInflater inflater = ((Activity) context).getMenuInflater();
+            inflater.inflate(R.menu.menu_handtalk_list, menu);
+
+            try{
+
+                MenuItem.OnMenuItemClickListener listener = new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        onContextItemSelected(item);
+                        return true;
+                    }
+                };
+
+                for (int i = 0, n = menu.size(); i < n; i++)
+                    menu.getItem(i).setOnMenuItemClickListener(listener);
+
+            }catch (Exception e){
+                Log.e(TAG,"MenuItem.OnMenuItemClickListener error: "+e.getMessage());
+            }
+
+
+        }
+    };
+
+    private boolean onContextItemSelected(MenuItem item) {
+
+        int i = item.getItemId();
+
+        if (i == R.id.translatetosignlanguage) {
+            try {
+                HandTalkSDK.getInstance(context).setTextToTranslate(_lastTitleMenuItemSelected);
+                HandTalkSDK.getInstance(context).showHugo();
+            } catch (Exception e) {
+                Log.e("Hand Talk Error: ", e.getMessage());
+            }
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 
     private HandTalkSDK(){}
 
@@ -140,6 +199,36 @@ public class HandTalkSDK {
         context.startActivity(intent);
     }
 
+    public void showConfirmDialog(){
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.custom_confirm_dialog);
+
+        TextView text = (TextView) dialog.findViewById(R.id.ht_txt_dialog);
+        text.setText("Traduzir para Libras...");
+
+        Button dialogButtonY = (Button) dialog.findViewById(R.id.ht_btn_yes);
+        dialogButtonY.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HandTalkSDK.getInstance(context).setTextToTranslate(_lastTitleMenuItemSelected);
+                HandTalkSDK.getInstance(context).showHugo();
+                dialog.dismiss();
+            }
+        });
+
+        Button dialogButtonN = (Button) dialog.findViewById(R.id.ht_btn_no);
+        dialogButtonN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
     public int getIconhandTalkResouces(){
         return R.drawable.ic_sign_language;
     }
@@ -148,7 +237,7 @@ public class HandTalkSDK {
         return R.drawable.handtalk_tutorial;
     }
 
-    private void turnAllElementsSelectable(){
+    public void turnAllElementsSelectable(){
         //make an array list to hold the info
         ArrayList<Integer> ids = new ArrayList<>();
         //get the window to look through
@@ -164,11 +253,46 @@ public class HandTalkSDK {
 
             View child = viewGroup.getChildAt(i);
 
-            if (child instanceof ViewGroup) {
+            //NAVIGATION VIEW - MENU VIEW
+            if((viewGroup instanceof NavigationView) && (child instanceof NavigationMenuView)){
+
+                NavigationMenuView nmv = (NavigationMenuView) child;
+                for (int t = 0, p = nmv.getChildCount(); t < p; t++) {
+
+                    View childMenu = nmv.getChildAt(t);
+                    Log.i(TAG,"@@@@@@ FOUND childMenu: "+childMenu);
+
+                    if(childMenu instanceof NavigationMenuItemView) {
+
+                        final NavigationMenuItemView item = (NavigationMenuItemView) childMenu;
+                        final String tit = item.getItemData().getTitle().toString();
+                        item.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View view) {
+//                                Activity act = (Activity)context;
+//                                act.openContextMenu(item);
+
+                                _lastTitleMenuItemSelected = tit;
+                                showConfirmDialog();
+                                Log.i(TAG,"_lastTitleMenuItemSelected: "+_lastTitleMenuItemSelected);
+                                return false;
+                            }
+                        });
+
+//                        item.setOnCreateContextMenuListener(CML);
+
+                    }
+                }
+
+            //ANY OTHER ITEMS
+            } else if (child instanceof ViewGroup) {
+
                 findAllViews((ViewGroup) child, ids);
+
             } else {
+
                 if (child instanceof TextView) {
-                    Log.i(TAG,"makeViewIdElementToSelectableMode");
+                    Log.i(TAG, "makeViewIdElementToSelectableMode");
                     makeViewIdElementToSelectableMode((TextView) child);
                 }
             }

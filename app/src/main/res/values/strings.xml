@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AndroidLib</string>
     <string name="translatedTextEmpty">...</string>
+    <string name="menu_translate">Traduzir para Libras</string>
 </resources>

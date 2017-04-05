@@ -5,20 +5,16 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.support.design.internal.NavigationMenuItemView;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,6 +29,7 @@ import static br.com.handtalk.androidlib.Constants.Configurations.TAG;
  * Created by carloswanderlan on 3/6/17.
  */
 
+@SuppressWarnings({"JavaDoc", "WeakerAccess"})
 public class HandTalkSDK {
 
     @SuppressWarnings("WeakerAccess")
@@ -60,59 +57,26 @@ public class HandTalkSDK {
     private String texttotranslate;
     private int windowtype = HTWindowType.HUGO_WINDOW_FLOAT_CENTERED;
     private boolean touchableToExit = false;
+
+    @SuppressWarnings("FieldCanBeLocal")
     private int animation = HTAnimationType.HUGO_ANIME_SLIDE_FROM_RIGHT;
+
     private String _lastTitleMenuItemSelected = null;
 
-    private View.OnCreateContextMenuListener CML = new View.OnCreateContextMenuListener() {
 
+    private View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
         @Override
-        public void onCreateContextMenu(ContextMenu menu, View v,
-                                        ContextMenu.ContextMenuInfo menuInfo) {
-
-            MenuInflater inflater = ((Activity) context).getMenuInflater();
-            inflater.inflate(R.menu.menu_handtalk_list, menu);
-
-            try{
-
-                MenuItem.OnMenuItemClickListener listener = new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        onContextItemSelected(item);
-                        return true;
-                    }
-                };
-
-                for (int i = 0, n = menu.size(); i < n; i++)
-                    menu.getItem(i).setOnMenuItemClickListener(listener);
-
-            }catch (Exception e){
-                Log.e(TAG,"MenuItem.OnMenuItemClickListener error: "+e.getMessage());
-            }
-
-
-        }
-    };
-
-    private boolean onContextItemSelected(MenuItem item) {
-
-        int i = item.getItemId();
-
-        if (i == R.id.translatetosignlanguage) {
-            try {
-                HandTalkSDK.getInstance(context).setTextToTranslate(_lastTitleMenuItemSelected);
-                HandTalkSDK.getInstance(context).showHugo();
-            } catch (Exception e) {
-                Log.e("Hand Talk Error: ", e.getMessage());
-            }
-            return true;
-        }else {
+        public boolean onLongClick(View view) {
+            showConfirmDialog();
+            Log.i(TAG, "_lastTitleMenuItemSelected: " + _lastTitleMenuItemSelected);
             return false;
         }
-    }
+    };
 
 
     private HandTalkSDK(){}
 
+    @SuppressWarnings("WeakerAccess")
     public static synchronized HandTalkSDK getInstance(Context ctx){
 
 
@@ -140,6 +104,7 @@ public class HandTalkSDK {
      * Set if the user can touch outside window to finish Hugo's window.
      * @param flag
      */
+    @SuppressWarnings("WeakerAccess")
     public void setTouchableToExit(boolean flag) {
         touchableToExit = flag;
     }
@@ -148,6 +113,7 @@ public class HandTalkSDK {
      * Here you will set up the animation type for window entering
      * @param anime
      */
+    @SuppressWarnings("WeakerAccess")
     public void setAnimation(int anime) {
         animation = anime;
     }
@@ -156,6 +122,7 @@ public class HandTalkSDK {
      * Set the text will be translated by Hugo! ;)
      * @param str
      */
+    @SuppressWarnings("WeakerAccess")
     public void setTextToTranslate(String str){
         texttotranslate = str;
     }
@@ -164,6 +131,7 @@ public class HandTalkSDK {
      * Set the way of the window will be showed.
      * @param type
      */
+    @SuppressWarnings("WeakerAccess")
     public void setWindowType(int type){
         windowtype = type;
     }
@@ -171,7 +139,9 @@ public class HandTalkSDK {
     /**
      * This method will start and show the Hugo's Window and init the translation.
      */
-    public void showHugo(){
+
+    private void showHugo(){
+
         try {
             Intent intent = new Intent(context, HugoActivity.class);
             intent.putExtra("HT_StringToTranslate", texttotranslate);
@@ -179,16 +149,14 @@ public class HandTalkSDK {
             intent.putExtra("HT_WindowType", windowtype);
             context.startActivity(intent);
 
-//            ((Activity) context).overridePendingTransition(R.anim.slide_from_left, R.anim.slide_from_right);
-//            if (context instanceof Activity) {
-//                if (animation == HTAnimationType.HUGO_ANIME_SLIDE_FROM_LEFT) {
-//                    Log.i(TAG,"HUGO_ANIME_SLIDE_FROM_LEFT run");
-//                    ((Activity) context).overridePendingTransition(R.anim.slide_from_left, R.anim.slide_from_right);
-//                }else if (animation == HTAnimationType.HUGO_ANIME_SLIDE_FROM_RIGHT) {
-//                    Log.i(TAG,"HUGO_ANIME_SLIDE_FROM_RIGHT run");
-//                    ((Activity) context).overridePendingTransition(R.anim.slide_from_right, R.anim.slide_from_left);
-//                }
-//            }
+            if (animation == HTAnimationType.HUGO_ANIME_SLIDE_FROM_LEFT) {
+                Log.i(TAG,"HUGO_ANIME_SLIDE_FROM_LEFT run");
+                ((Activity) context).overridePendingTransition(R.anim.slide_from_left, R.anim.slide_from_right);
+            }else if (animation == HTAnimationType.HUGO_ANIME_SLIDE_FROM_RIGHT) {
+                Log.i(TAG,"HUGO_ANIME_SLIDE_FROM_RIGHT run");
+                ((Activity) context).overridePendingTransition(R.anim.slide_from_right, R.anim.slide_from_left);
+            }
+
         }catch (Exception e){
             Log.e(TAG,"error: openPopUpWindow -> "+e.getMessage());
         }
@@ -199,21 +167,22 @@ public class HandTalkSDK {
         context.startActivity(intent);
     }
 
-    public void showConfirmDialog(){
+    private void showConfirmDialog(){
+
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.custom_confirm_dialog);
 
         TextView text = (TextView) dialog.findViewById(R.id.ht_txt_dialog);
-        text.setText("Traduzir para Libras...");
+        text.setText(R.string.handtalk_label_confirm_dialog);
 
         Button dialogButtonY = (Button) dialog.findViewById(R.id.ht_btn_yes);
         dialogButtonY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HandTalkSDK.getInstance(context).setTextToTranslate(_lastTitleMenuItemSelected);
-                HandTalkSDK.getInstance(context).showHugo();
+                setTextToTranslate(_lastTitleMenuItemSelected);
+                showHugo();
                 dialog.dismiss();
             }
         });
@@ -237,6 +206,7 @@ public class HandTalkSDK {
         return R.drawable.handtalk_tutorial;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void turnAllElementsSelectable(){
         //make an array list to hold the info
         ArrayList<Integer> ids = new ArrayList<>();
@@ -252,47 +222,37 @@ public class HandTalkSDK {
         for (int i = 0, n = viewGroup.getChildCount(); i < n; i++) {
 
             View child = viewGroup.getChildAt(i);
+            Log.i(TAG,"@@@@@@ FOUND ViewGroup: "+viewGroup+" | child: "+child);
 
             //NAVIGATION VIEW - MENU VIEW
-            if((viewGroup instanceof NavigationView) && (child instanceof NavigationMenuView)){
+            if((viewGroup instanceof NavigationView) && (child instanceof NavigationMenuView)) {
 
                 NavigationMenuView nmv = (NavigationMenuView) child;
                 for (int t = 0, p = nmv.getChildCount(); t < p; t++) {
 
                     View childMenu = nmv.getChildAt(t);
-                    Log.i(TAG,"@@@@@@ FOUND childMenu: "+childMenu);
-
-                    if(childMenu instanceof NavigationMenuItemView) {
+                    if (childMenu instanceof NavigationMenuItemView) {
 
                         final NavigationMenuItemView item = (NavigationMenuItemView) childMenu;
-                        final String tit = item.getItemData().getTitle().toString();
-                        item.setOnLongClickListener(new View.OnLongClickListener() {
-                            @Override
-                            public boolean onLongClick(View view) {
-//                                Activity act = (Activity)context;
-//                                act.openContextMenu(item);
-
-                                _lastTitleMenuItemSelected = tit;
-                                showConfirmDialog();
-                                Log.i(TAG,"_lastTitleMenuItemSelected: "+_lastTitleMenuItemSelected);
-                                return false;
-                            }
-                        });
-
-//                        item.setOnCreateContextMenuListener(CML);
+                        _lastTitleMenuItemSelected = item.getItemData().getTitle().toString();
+                        item.setOnLongClickListener(onLongClickListener);
 
                     }
                 }
 
-            //ANY OTHER ITEMS
-            } else if (child instanceof ViewGroup) {
+                //BUTTONS
+            }else if(child instanceof Button){
+                Button bt = (Button) child;
+                _lastTitleMenuItemSelected = bt.getText().toString();
+                bt.setOnLongClickListener(onLongClickListener);
 
+
+                //ANY OTHER ITEMS
+            } else if (child instanceof ViewGroup) {
                 findAllViews((ViewGroup) child, ids);
 
             } else {
-
                 if (child instanceof TextView) {
-                    Log.i(TAG, "makeViewIdElementToSelectableMode");
                     makeViewIdElementToSelectableMode((TextView) child);
                 }
             }

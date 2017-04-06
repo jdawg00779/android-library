@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.support.design.internal.NavigationMenuItemView;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -149,13 +150,13 @@ public class HandTalkSDK {
             intent.putExtra("HT_WindowType", windowtype);
             context.startActivity(intent);
 
-            if (animation == HTAnimationType.HUGO_ANIME_SLIDE_FROM_LEFT) {
-                Log.i(TAG,"HUGO_ANIME_SLIDE_FROM_LEFT run");
-                ((Activity) context).overridePendingTransition(R.anim.slide_from_left, R.anim.slide_from_right);
-            }else if (animation == HTAnimationType.HUGO_ANIME_SLIDE_FROM_RIGHT) {
-                Log.i(TAG,"HUGO_ANIME_SLIDE_FROM_RIGHT run");
-                ((Activity) context).overridePendingTransition(R.anim.slide_from_right, R.anim.slide_from_left);
-            }
+//            if (animation == HTAnimationType.HUGO_ANIME_SLIDE_FROM_LEFT) {
+//                Log.i(TAG,"HUGO_ANIME_SLIDE_FROM_LEFT run");
+//                ((Activity) context).overridePendingTransition(R.anim.slide_from_left, R.anim.slide_from_right);
+//            }else if (animation == HTAnimationType.HUGO_ANIME_SLIDE_FROM_RIGHT) {
+//                Log.i(TAG,"HUGO_ANIME_SLIDE_FROM_RIGHT run");
+//                ((Activity) context).overridePendingTransition(R.anim.slide_from_right, R.anim.slide_from_left);
+//            }
 
         }catch (Exception e){
             Log.e(TAG,"error: openPopUpWindow -> "+e.getMessage());
@@ -222,25 +223,37 @@ public class HandTalkSDK {
         for (int i = 0, n = viewGroup.getChildCount(); i < n; i++) {
 
             View child = viewGroup.getChildAt(i);
+
             Log.i(TAG,"@@@@@@ FOUND ViewGroup: "+viewGroup+" | child: "+child);
 
             //NAVIGATION VIEW - MENU VIEW
             if((viewGroup instanceof NavigationView) && (child instanceof NavigationMenuView)) {
 
                 NavigationMenuView nmv = (NavigationMenuView) child;
+
                 for (int t = 0, p = nmv.getChildCount(); t < p; t++) {
 
                     View childMenu = nmv.getChildAt(t);
+
                     if (childMenu instanceof NavigationMenuItemView) {
 
                         final NavigationMenuItemView item = (NavigationMenuItemView) childMenu;
                         _lastTitleMenuItemSelected = item.getItemData().getTitle().toString();
                         item.setOnLongClickListener(onLongClickListener);
 
+                        Log.i(TAG, "@@@@@@ FOUND childMenu / NavigationMenuItemView: " + item.getItemData().getTitle().toString());
+
+                    } else if (childMenu instanceof TextView) {
+
+                        TextView txt = (TextView) childMenu;
+                        makeViewIdElementToSelectableMode(txt);
+                        Log.i(TAG, "@@@@@@ FOUND childMenu / TextView: " + txt.getText().toString());
+
                     }
                 }
 
-                //BUTTONS
+
+            //BUTTONS
             }else if(child instanceof Button){
                 Button bt = (Button) child;
                 _lastTitleMenuItemSelected = bt.getText().toString();
@@ -253,7 +266,9 @@ public class HandTalkSDK {
 
             } else {
                 if (child instanceof TextView) {
-                    makeViewIdElementToSelectableMode((TextView) child);
+                    TextView txt2 = (TextView) child;
+                    Log.i(TAG,"@@@@@@ FOUND child / TextView: "+txt2.getText().toString());
+                    makeViewIdElementToSelectableMode(txt2);
                 }
             }
         }

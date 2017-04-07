@@ -1,8 +1,11 @@
 package br.com.handtalk.androidlib;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +26,7 @@ public class HugoActivity extends CallbackInterface implements CallbackInterface
     protected int typeOfWindow;
     protected RelativeLayout loaderRl;
     protected HandTalkSDK htsdk;
+    protected Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,8 @@ public class HugoActivity extends CallbackInterface implements CallbackInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hugo);
         loaderRl = (RelativeLayout) findViewById(R.id.HTSDKloader);
+
+        ctx = this;
 
         mOUL = this;
         handler = new Handler();
@@ -189,12 +195,20 @@ public class HugoActivity extends CallbackInterface implements CallbackInterface
                 try {
                     mUnityPlayer.requestFocus();
                     loaderRl.setVisibility(View.GONE);
-                    setUserID("b7b7cda951e1f21c2c247f30f8cfef43"); //REMOVER QUANDO FOR PARA PRODUÇÃO
-                    Log.i(TAG, "OnUnityStarted()");
-                    if(!textToTranslate.isEmpty()){
-                        playHugo(textToTranslate);
+
+                    //USER TOKEN
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+                    String token = preferences.getString("HandTalkSDKToken", "");
+                    if(!token.isEmpty()) {
+                        setUserID(token);
+                        Log.i(TAG, "OnUnityStarted()");
+                        if (!textToTranslate.isEmpty()) {
+                            playHugo(textToTranslate);
+                        } else {
+                            Log.e(TAG, "The 'textToTranslate' variable is empty!");
+                        }
                     }else{
-                        Log.e(TAG,"The 'textToTranslate' variable is empty!");
+                        Log.e(TAG, "The 'user token' is necessary. Visit http://www.handtalk.me e create your account.");
                     }
                 } catch (Exception e) {
                     Log.e(TAG, "OnUnityStarted() ERROR: " + e.getMessage());

@@ -11,7 +11,8 @@ Você pode enviar uma String como parâmetro e uma tradução será realizada pe
 
 ## Como usar?
 
-1) adicionar a dependência no Gradle:
+1) Adicionar a dependência no Gradle:
+
 ```
     compile 'br.com.handtalk:android-sdk:0.0.1'
 ```

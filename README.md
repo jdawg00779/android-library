@@ -15,6 +15,7 @@ Você pode enviar uma String como parâmetro e uma tradução será realizada pe
 ```
     compile 'br.com.handtalk:android-sdk:0.0.1'
 ```
+-----
 
 2) Iniciar a instância do objeto **HandTalkSDK**:
 ```
@@ -22,7 +23,26 @@ Você pode enviar uma String como parâmetro e uma tradução será realizada pe
 ```
 OBS: Recomendamos utilizar a chamada dentro da função **onResume()** da Activity, para evitar que elementos sejam carregados após a chamada da nosso instância e não consigam ser traduzidos.
 
-3) Se você quiser mostrar a Activity padrão do **Tutorial** ao usuário, basta chamar:
+-----
+
+3) Para realizar uma tradução é necessário adicionar o seu TOKEN, conforme a chamada de função abaixo:
+
+```
+    HandTalkSDK.getInstance(context).setToken(token);
+```
+
+Caso não possua uma conta, crie uma acessando http://www.handtalk.me
+
+-----
+
+4) Para os Menus (NavigationView ou ListView) - adicionar a chamada abaixo ao clicar no ícone (hamburguer) do menu para abrir o DrawerLayout
+
+```
+    HandTalkSDK.getInstance(context).turnAllElementsSelectable();
+```
+-----
+
+5) Se você quiser mostrar a Activity padrão do **Tutorial** ao usuário, basta chamar:
 ```
     HandTalkSDK.getInstance(context).showUXTutorial();
 ```
@@ -30,27 +50,17 @@ OBS: Recomendamos utilizar a chamada dentro da função **onResume()** da Activi
 
 ## Como funciona para o usuário final:
 
-Sempre que o usuário quiser traduzir algo, basta ele selecionar o texto do elemento, e aparecerá no contexto do menu um **ícone de tradução em Libras**. Então o usuário pode tocar nele e realizar a tradução do conteúdo.
+1) Sempre que o usuário quiser traduzir algo, basta ele selecionar o texto do elemento e aparecerá no 'Menu Context' um  **ícone para tradução em Libras**. Então o usuário pode tocar nele e realizar a tradução do conteúdo.
 
-**Veja o GIF de exemplo abaixo:**
+ <center><img align='center' src='https://github.com/Hand-Talk/android-library/blob/master/app/src/main/res/drawable/tuto01.png'></center>
 
-<center><img align='center' src="http://line25.com/wp-content/uploads/2014/animated/4.gif"></center>
+2) Os menus e os botões possuem comportamento diferente do citado acima. Ao manter o dedo pressionado irá aparecer uma Dialog com a opção para realizar a tradução.
+
+<center><img align='center' src='https://github.com/Hand-Talk/android-library/blob/master/app/src/main/res/drawable/tuto02.png'></center>
+
+<!-- **Veja o GIF de exemplo abaixo:** -->
 
 
-<!-- ## Sobre a Hand Talk -->
+-----
+Para maiores informações sobre as soluções da Hand Talk, acesse www.handtalk.me
 
-
-<!-- <a href='http://handtalk.me/' target='_blank'>Hand Talk</a> é uma **startup** com uma missão muito clara: derrubar as barreiras entre surdos e ouvintes. -->
-<!-- Para uma startup, isso não é uma tarefa fácil - mas,  **claro que é possível**! -->
-
-<!-- Atualmente, temos 02 principais soluções: -->
-
-<!-- - O Aplicativo Hand Talk para smartphones - um tradutor de bolso, que traduz conteúdos escritos e falados para Língua de Sinais, com a ajuda do nosso amigo, **o Hugo** - um avatar 3D, que fará você se apaixonar pelo app. -->
-<!-- - A outra solução é um **tradutor para sites**, que visa tornar a internet acessível para os surdos. Podemos não ter ideia, mas a maioria dos surdos não pode escrever ou ler na língua nativa do seu país, porque sua primeira língua (materna) é a Língua de Sinais. É como se a internet estivess offline para mais de 300 milhões de pessoas. -->
-<!-- Com o tradutor do site, esses conteúdos podem ter uma aplicação anexada e uma vez que a ferramenta seja ativada, todo o conteúdo escrito pode ser traduzido para a língua gestual pelo Hugo. -->
-<!-- No momento, as soluções estão disponíveis apenas para tradução do Português (BR) para Libras, mas o plano é torná-lo global o mais rápido possível. -->
-<!-- Nosso próximo passo é ensinar ao Hugo a Língua Americana de Sinais (ASL) -->
-
-### Saiba mais sobre a Hand Talk: <a href='https://www.youtube.com/watch?v=GtCh8cw5P4Y' target='_blank'>vídeo institutional.</a>
-
-<!-- ## More examples and documentation -->

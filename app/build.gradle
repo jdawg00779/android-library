@@ -2,6 +2,30 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'android-sdk'
+
+    publishedGroupId = 'br.com.handtalk'
+    libraryName = 'AndroidSDK'
+    artifact = 'android-sdk'
+
+    libraryDescription = 'Uma biblioteca android que você pode usar para traduzir conteúdos de texto em Português para Libras (Língua Brasileira de Sinais)'
+
+    siteUrl = 'https://github.com/Hand-Talk/android-library'
+    gitUrl = 'https://github.com/Hand-Talk/android-library.git'
+
+    libraryVersion = VERSION_NAME
+
+    developerId = 'carlosuebbi'
+    developerName = 'Carlos Wanderlan'
+    developerEmail = 'carlosuebbi@gmail.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://github.com/Hand-Talk/android-library/blob/master/LICENSE'
+    allLicenses = ["MIT"]
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "24.0.0"
@@ -61,7 +85,7 @@ uploadArchives {
         }
     }
 }
-task install(dependsOn: uploadArchives)
+task install_local(dependsOn: uploadArchives)
 
 /*
 
@@ -83,3 +107,10 @@ dependencies {
     compile 'com.android.support:design:25.1.0'
     compile 'br.com.handtalk:unity:0.0.1@aar'
 }
+
+
+// Place it at the end of the file
+apply from: '../JCenter_installv1.gradle'
+apply from: '../JCenter_bintrayv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

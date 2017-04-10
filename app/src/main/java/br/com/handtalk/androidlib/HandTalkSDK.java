@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.internal.NavigationMenuItemView;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
@@ -163,6 +165,11 @@ public class HandTalkSDK {
     public void showUXTutorial(){
         Intent intent = new Intent(context,TutorialSDK.class);
         context.startActivity(intent);
+    }
+
+    public void setToken(String token){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.edit().putString("HandTalkSDKToken",token).apply();
     }
 
     private void showConfirmDialog(){

@@ -2,10 +2,16 @@ package br.com.handtalk.androidlib;
 
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 import com.unity3d.player.UnityPlayer;
-
 import static br.com.handtalk.androidlib.Constants.Configurations.TAG;
+
+/**
+ * HAND TALK - A Translator Plataform from Spoken and
+ * Written Languages to Sign languages.
+ * http://www.handtalk.me
+ *
+ * Created by carloswanderlan on 3/6/17.
+ */
 
 public class CallbackInterface extends AppCompatActivity {
 

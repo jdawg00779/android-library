@@ -5,6 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+/**
+ * HAND TALK - A Translator Plataform from Spoken and
+ * Written Languages to Sign languages.
+ * http://www.handtalk.me
+ *
+ * Created by carloswanderlan on 3/6/17.
+ */
+
 public class TutorialSDK extends AppCompatActivity {
 
     @Override

@@ -110,7 +110,7 @@ dependencies {
 
 
 // Place it at the end of the file
-apply from: '../JCenter_installv1.gradle'
-apply from: '../JCenter_bintrayv1.gradle'
+apply from: '../JCenter/installv1.gradle'
+apply from: '../JCenter/bintrayv1.gradle'
 //apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 //apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

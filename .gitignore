@@ -15,5 +15,4 @@ handtalkunityclean/build
 handtalkunityclean/src/main/res/drawable-xhdpi/
 
 ## Hand Talk ##
-/JCenter_bintrayv1.gradle
-/JCenter_installv1.gradle
+JCenter/

@@ -26,10 +26,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/HTDialogAlertCustom" />
 
-        <service
-            android:name=".ServiceTranslateHead"
-            android:stopWithTask="true" />
-
         <activity
             android:name=".TutorialSDK"
             android:theme="@style/HTDialogAlertCustom"

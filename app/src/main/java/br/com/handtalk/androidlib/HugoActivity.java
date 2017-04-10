@@ -12,10 +12,16 @@ import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-
 import com.unity3d.player.UnityPlayer;
-
 import static br.com.handtalk.androidlib.Constants.Configurations.TAG;
+
+/**
+ * HAND TALK - A Translator Plataform from Spoken and
+ * Written Languages to Sign languages.
+ * http://www.handtalk.me
+ *
+ * Created by carloswanderlan on 3/6/17.
+ */
 
 public class HugoActivity extends CallbackInterface implements CallbackInterface.OnUnityListener {
 
@@ -199,6 +205,7 @@ public class HugoActivity extends CallbackInterface implements CallbackInterface
                     //USER TOKEN
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
                     String token = preferences.getString("HandTalkSDKToken", "");
+
                     if(!token.isEmpty()) {
                         setUserID(token);
                         Log.i(TAG, "OnUnityStarted()");

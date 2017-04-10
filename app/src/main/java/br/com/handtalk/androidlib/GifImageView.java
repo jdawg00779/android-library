@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.util.Log;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -17,7 +16,7 @@ import java.io.InputStream;
  * HAND TALK - A Translator Plataform from Spoken and
  * Written Languages to Sign languages.
  * http://www.handtalk.me
- * <p>
+ *
  * Created by carloswanderlan on 3/14/17.
  */
 

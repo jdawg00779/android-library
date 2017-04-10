@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.support.design.internal.NavigationMenuItemView;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,9 +16,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import static br.com.handtalk.androidlib.Constants.Configurations.TAG;
 
 /**
@@ -209,11 +206,8 @@ public class HandTalkSDK {
 
     @SuppressWarnings("WeakerAccess")
     public void turnAllElementsSelectable(){
-        //make an array list to hold the info
         ArrayList<Integer> ids = new ArrayList<>();
-        //get the window to look through
         ViewGroup viewGroup = (ViewGroup) ((Activity) context).getWindow().getDecorView();
-        //call things recursively
         findAllViews(viewGroup, ids);
 
     }
@@ -223,8 +217,6 @@ public class HandTalkSDK {
         for (int i = 0, n = viewGroup.getChildCount(); i < n; i++) {
 
             View child = viewGroup.getChildAt(i);
-
-            Log.i(TAG,"@@@@@@ FOUND ViewGroup: "+viewGroup+" | child: "+child);
 
             //NAVIGATION VIEW - MENU VIEW
             if((viewGroup instanceof NavigationView) && (child instanceof NavigationMenuView)) {
@@ -241,13 +233,10 @@ public class HandTalkSDK {
                         _lastTitleMenuItemSelected = item.getItemData().getTitle().toString();
                         item.setOnLongClickListener(onLongClickListener);
 
-                        Log.i(TAG, "@@@@@@ FOUND childMenu / NavigationMenuItemView: " + item.getItemData().getTitle().toString());
-
                     } else if (childMenu instanceof TextView) {
 
                         TextView txt = (TextView) childMenu;
                         makeViewIdElementToSelectableMode(txt);
-                        Log.i(TAG, "@@@@@@ FOUND childMenu / TextView: " + txt.getText().toString());
 
                     }
                 }
@@ -267,7 +256,6 @@ public class HandTalkSDK {
             } else {
                 if (child instanceof TextView) {
                     TextView txt2 = (TextView) child;
-                    Log.i(TAG,"@@@@@@ FOUND child / TextView: "+txt2.getText().toString());
                     makeViewIdElementToSelectableMode(txt2);
                 }
             }
@@ -287,9 +275,9 @@ public class HandTalkSDK {
 
             @Override
             public boolean onPrepareActionMode(android.view.ActionMode actionMode, Menu menu) {
-//                menu.removeItem(android.R.id.selectAll);
-//                menu.removeItem(android.R.id.cut);
-//                menu.removeItem(android.R.id.copy);
+                //menu.removeItem(android.R.id.selectAll);
+                //menu.removeItem(android.R.id.cut);
+                //menu.removeItem(android.R.id.copy);
                 return false;
             }
 
@@ -314,8 +302,6 @@ public class HandTalkSDK {
                         setAnimation(HTAnimationType.HUGO_ANIME_SLIDE_TO_LEFT);
                         setTouchableToExit(true);
                         showHugo();
-
-                        // Finish and close the ActionMode
                     }
 
                     mode.finish();

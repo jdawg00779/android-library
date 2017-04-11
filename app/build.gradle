@@ -1,30 +1,5 @@
-//apply plugin: 'com.android.application'
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
-
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'android-sdk'
-
-    publishedGroupId = 'br.com.handtalk'
-    libraryName = 'AndroidSDK'
-    artifact = 'android-sdk'
-
-    libraryDescription = 'Uma biblioteca android que você pode usar para traduzir conteúdos de texto em Português para Libras (Língua Brasileira de Sinais)'
-
-    siteUrl = 'https://github.com/Hand-Talk/android-library'
-    gitUrl = 'https://github.com/Hand-Talk/android-library.git'
-
-    libraryVersion = VERSION_NAME
-
-    developerId = 'carlosuebbi'
-    developerName = 'Carlos Wanderlan'
-    developerEmail = 'carlosuebbi@gmail.com'
-
-    licenseName = 'MIT'
-    licenseUrl = 'https://github.com/Hand-Talk/android-library/blob/master/LICENSE'
-    allLicenses = ["MIT"]
-}
 
 android {
     compileSdkVersion 25
@@ -47,33 +22,32 @@ repositories {
     }
 }
 
-// custom tasks for creating source/javadoc jars
-//task javadoc(type: Javadoc) {
-//    source = android.sourceSets.main.java.srcDirs
-//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-//    destinationDir = file("../javadoc/")
-//    failOnError false
-//}
-//
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    classifier = 'javadoc'
-//    from javadoc.destinationDir
-//}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:design:25.1.0'
+    //noinspection GradleDynamicVersion
+    compile 'br.com.handtalk:unity:'+VERSION_NAME+'@aar'
+}
 
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                // ... other config here ...
 
-
-//Creating sources with comments
-//task androidSourcesJar(type: Jar) {
-//    classifier = 'sources'
-//    from android.sourceSets.main.java.srcDirs
-//}
-
-//Put the androidSources and javadoc to the artifacts
-//artifacts {
-//    archives androidSourcesJar
-//    archives javadocJar
-//}
-
+                pom.whenConfigured { pom ->
+                    pom.dependencies.forEach { dep ->
+                        if (dep.getVersion() == "unspecified") {
+                            dep.setGroupId(GROUP)
+                            dep.setVersion(VERSION_NAME)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 uploadArchives {
     repositories {
@@ -87,30 +61,7 @@ uploadArchives {
 }
 task install_local(dependsOn: uploadArchives)
 
-/*
-
-//            pom.whenConfigured { pom ->
-//                println("Current Dependencies ${pom.dependencies}")
-//                pom.dependencies.each { dep ->
-//                    if (dep.getVersion() == "unspecified") {
-//                        dep.setGroupId(GROUP)
-//                        dep.setVersion(VERSION_NAME)
-//                        println("Updated ${dep}")
-//                    }
-//                }
-//            }
- */
-
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'br.com.handtalk:unity:0.0.1@aar'
-}
 
 
 // Place it at the end of the file
-apply from: '../JCenter/installv1.gradle'
-apply from: '../JCenter/bintrayv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: '../JCenter/bintrayInstall.gradle'

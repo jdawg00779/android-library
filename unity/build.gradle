@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+	compileSdkVersion 25
+	buildToolsVersion "24.0.0"
+	defaultConfig {
+		minSdkVersion 16
+		targetSdkVersion 25
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'
+		}
+	}
+}
+
+repositories {
+    flatDir {
+        dirs "$rootProject.projectDir/libs"
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                // ... other config here ...
+
+                pom.whenConfigured { pom ->
+                    pom.dependencies.forEach { dep ->
+                        if (dep.getVersion() == "unspecified") {
+                            dep.setGroupId(GROUP)
+                            dep.setVersion(VERSION_NAME)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: MAVEN_LOCAL_PATH_HT)
+            pom.groupId = GROUP
+            pom.artifactId = POM_ARTIFACT_ID_UNITY
+            pom.version = VERSION_NAME
+        }
+    }
+}
+task install_local_unity(dependsOn: uploadArchives)
+
+
+
+// Place it at the end of the file
+apply from: '../JCenter/bintrayInstall.gradle'

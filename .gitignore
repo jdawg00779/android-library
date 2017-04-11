@@ -11,8 +11,8 @@ gradle.properties
 /local.properties
 .DS_Store
 app/libs/
-handtalkunityclean/build
-handtalkunityclean/src/main/res/drawable-xhdpi/
+unity/build
+unity/src/main/res/drawable-xhdpi/
 
 ## Hand Talk ##
 JCenter/

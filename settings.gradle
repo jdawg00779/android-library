@@ -1,2 +1,2 @@
 include ':unity'
-include ':app'
+include ':android-sdk'

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AndroidLib</string>
+    <string name="handtalk_translatedTextEmpty">…</string>
+    <string name="handtalk_menu_translate">Traduzir para Libras</string>
+    <string name="handtalk_label_confirm_dialog">Traduzir para Libras…</string>
+    <string name="tuto_head_01">Para campos de texto, basta selecionar o texto desejado que será exibido o ícone de Língua de Sinais. Ao clicar o nosso querido Hugo irá realizar a tradução para você!</string>
+    <string name="tuto_head_02">Nos menus e botões, basta dar um toque mais longo que irá aparecer a opção para tradução do item que selecionou.</string>
+    <string name="label_close_button">fechar</string>
+    <string name="tuto_title">Tutorial Android SDK</string>
+</resources>

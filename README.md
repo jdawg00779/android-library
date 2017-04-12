@@ -51,11 +51,11 @@ Caso não possua uma conta, crie uma acessando http://www.handtalk.me
 
 1) Sempre que o usuário quiser traduzir algo, basta ele selecionar o texto do elemento e aparecerá no 'Menu Context' um  **ícone para tradução em Libras**. Então o usuário pode tocar nele e realizar a tradução do conteúdo.
 
- <center><img width='350' src='https://github.com/Hand-Talk/android-library/blob/master/app/src/main/res/drawable/tuto01.png'></center>
+ <center><img width='350' src='https://raw.githubusercontent.com/Hand-Talk/android-library/master/android-sdk/src/main/res/drawable/tuto01.png'></center>
 
 2) Os menus e os botões possuem comportamento diferente do citado acima. Ao manter o dedo pressionado irá aparecer uma Dialog com a opção para realizar a tradução.
 
-<center><img width='350' src='https://github.com/Hand-Talk/android-library/blob/master/app/src/main/res/drawable/tuto02.png'></center>
+<center><img width='350' src='https://raw.githubusercontent.com/Hand-Talk/android-library/master/android-sdk/src/main/res/drawable/tuto02.png'></center>
 
 
 -----

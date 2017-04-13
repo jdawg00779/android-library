@@ -10,7 +10,7 @@ Você pode enviar uma String como parâmetro e uma tradução será realizada pe
 Adicionar a dependência abaixo no seu arquivo ```build.gradle```:
 
 ```
-    compile 'br.com.handtalk:android-sdk:0.1@aar'
+    compile 'br.com.handtalk:android-sdk:0.1.2'
 ```
 -----
 

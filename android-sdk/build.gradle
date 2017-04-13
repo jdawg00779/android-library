@@ -27,7 +27,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:design:25.1.0'
     //noinspection GradleDynamicVersion
-    compile 'br.com.handtalk:unity:'+VERSION_NAME+'@aar'
+    compile 'br.com.handtalk:unity:' + VERSION_NAME + '@aar'
+//    compile project(':unity')
 }
 
 afterEvaluate { project ->
